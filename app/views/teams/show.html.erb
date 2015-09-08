@@ -1,0 +1,16 @@
+<h1> IM SHOWING Dat TEAM </h1>
+<strong><p>
+<%= @team.name %>
+</p></strong>
+
+<!-- <p>
+<%= @team.players.pluck :name %>
+</p> -->
+
+<% @team.players.each do |player| %>
+	<p>
+		<%= link_to player.name, "/players/#{player.id}" %>
+	</p>
+	<% end %>
+
+	<%= link_to "Back", teams_path %>

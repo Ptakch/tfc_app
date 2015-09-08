@@ -1,0 +1,23 @@
+<h1> This is players/index.html.erb HELLO </h1>
+
+<%= link_to 'Player List', controller: 'players' %>
+<%= link_to 'New Player', new_player_path %>
+<%= link_to 'Teams', teams_path %>
+
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Team</th>
+		<th>Steam Id</th>
+	</tr>
+	<% @players.each do |player| %>
+	<tr>
+		<td><%= player.name %></td>
+		<td><%= player.team.name %></td> 
+		<td><%= player.steam_id %></td>
+		<td><%= link_to 'Show', player_path(player) %></td>
+		<td><%= link_to 'Edit', edit_player_path(player) %></td>
+		<td><%= link_to 'destroy', player_path(player), method: :delete, data: { confirm: "are you sure?"} %></td>
+	</tr>
+	<%end%>
+</table>

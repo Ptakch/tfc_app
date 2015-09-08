@@ -1,0 +1,39 @@
+<h1> This is the New.html.erb file </h1>
+
+<%= form_for @player, url: players_path do |f| %>
+
+ <% if @player.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@player.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @player.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<p>
+		<%=  f.label :name %>
+		<%= f.text_field :name %>
+	</p>
+
+	<p>
+		<%= f.label :steam_id %>
+		<%= f.text_field :steam_id %>
+	</p>
+
+	 <p>
+    <label>Team</label>
+    <%= f.select :team_id, Team.all.map { |team| [ team.name, team.id ] }, :include_blank => true %>
+  </p>
+	<p>
+	<%= f.submit %>
+	</p>
+
+<% end %>
+
+<%= link_to 'Back', players_path %>

@@ -1,0 +1,18 @@
+<h1>Player (Show)</h1>
+
+<p>
+	<strong>Name:</strong>
+	<%= @player.name %>
+</p>
+
+<p>
+	<strong>Team:</strong>
+	<%= link_to @player.team.name, "/teams/#{@player.team.id}" %>
+</p>
+
+	<strong>Steam Id:</strong>
+	<%= @player.steam_id %>
+</p>
+
+<%=  link_to 'Back', players_path %>
+<%= link_to 'Edit', edit_player_path %>
