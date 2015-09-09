@@ -1,0 +1,27 @@
+<h1>Games#new</h1>
+<strong><p>Upload your log file</p></strong>
+
+<%= form_tag "/games", multipart: true do %>
+	<p>
+		<%= label_tag "Name dat file" %>
+		<%= text_field_tag :name %>
+
+	</p>
+
+	<p>
+		<%= label_tag "Select BLUE team" %>
+    	<%= select_tag :blue_team, options_for_select(Team.all.map { |team| [ team.name, team.id ] }), :include_blank => true %>
+  	</p>
+ 	
+ 	<p>
+		<%= label_tag "Select RED team" %>
+    	<%= select_tag :red_team, options_for_select(Team.all.map { |team| [ team.name, team.id ] }), :include_blank => true %>
+  	</p>
+
+	<p>
+		<%= label_tag :file, "Upload Dat File" %>
+		<%= file_field_tag :file %>
+	</p>
+
+	<%= submit_tag "Upload it" %>
+<% end %>

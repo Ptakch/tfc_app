@@ -1,14 +1,14 @@
 # == Schema Information
 #
-# Table name: teams
+# Table name: games
 #
 #  id         :integer          not null, primary key
-#  name       :string           default("Unassigned")
+#  file_name  :string
+#  game_date  :datetime
+#  map        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
-class Team < ActiveRecord::Base
-	has_many :players
-	has_many :games
+class Game < ActiveRecord::Base
 end

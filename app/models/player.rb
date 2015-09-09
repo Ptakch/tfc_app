@@ -4,8 +4,7 @@
 #
 #  id            :integer          not null, primary key
 #  name          :text
-#  steam_id      :integer
-#  team          :text
+#  steam_id      :text
 #  red_kills     :integer          default(0)
 #  red_deaths    :integer          default(0)
 #  red_tks       :integer          default(0)
@@ -21,6 +20,7 @@
 #  blue_maps     :integer          default(0)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  team_id       :integer
 #
 
 class Player < ActiveRecord::Base
