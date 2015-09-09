@@ -13,7 +13,7 @@
 	<% @players.each do |player| %>
 	<tr>
 		<td><%= player.name %></td>
-		<td><%= player.team.name %></td> 
+		<td><%= player.team.name if player.team %></td> 
 		<td><%= player.steam_id %></td>
 		<td><%= link_to 'Show', player_path(player) %></td>
 		<td><%= link_to 'Edit', edit_player_path(player) %></td>
@@ -21,3 +21,7 @@
 	</tr>
 	<%end%>
 </table>
+
+<% @players_ordered.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>

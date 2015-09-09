@@ -2,6 +2,7 @@ class PlayersController < ApplicationController
 
 	def index
 		@players = Player.all
+		@players_ordered = Player.pluck( :name, :red_kills ).sort_by { |item| item[1] }.reverse
 	end
 
 	def show

@@ -11,6 +11,7 @@ class GamesController < ApplicationController
   	file.each_line do |line|
   		break_into_pieces line
   		find_map line
+  		find_server line
   	end
 
 
@@ -56,16 +57,39 @@ class GamesController < ApplicationController
 	def capture_kill line
 		# puts "Captured Kill called"
 		res = line.match( 
-			/.*(?<first-id>STEAM_\d+:\d+:\d+)
+			/.*\"(?<username>.*)<\d+
+			 .*(?<first-id>STEAM_\d+:\d+:\d+)
 			 .*(?<first-team>(Red|Blue))
 			 .*
 			 .*(?<second-id>STEAM_\d+:\d+:\d+)
 			 .*(?<second-team>(Red|Blue))
 			/x )
 
-		puts "#{res['first-id']} KILLED HIMSELF" if res["first-id"] == res["second-id"]
-		puts "#{res['first-id']} got a TEAM KILL" if res["first-team"] == res["second-team"]
-		puts "#{res['first-id']} got a KILL" if res["first-team"] != res["second-team"]
+		player = Player.find_by :steam_id => res['first-id']
+		if player
+			player.red_tks += 1 if res["first-team"] == res["second-team"] && res["first-team"] == "Red"
+			player.blue_tks += 1 if res["first-team"] == res["second-team"] && res["first-team"] == "Blue"
+			player.blue_kills += 1 if res["first-team"] != res["second-team"] && res["first-team"] == "Blue"
+			player.red_kills += 1 if res["first-team"] != res["second-team"] && res["first-team"] == "Red"
+
+			player.save
+		else 
+			player = Player.new
+			player.steam_id = res["first-id"]
+			player.name = res["username"]
+
+			player.red_tks += 1 if res["first-team"] == res["second-team"] && res["first-team"] == "Red"
+			player.blue_tks += 1 if res["first-team"] == res["second-team"] && res["first-team"] == "Blue"
+			player.blue_kills += 1 if res["first-team"] != res["second-team"] && res["first-team"] == "Blue"
+			player.red_kills += 1 if res["first-team"] != res["second-team"] && res["first-team"] == "Red"
+
+			player.save
+		end
+		# binding.pry
+		# # puts "#{res['first-id']} KILLED HIMSELF" if res["first-id"] == res["second-id"]
+		# puts "#{res['first-id']} got a TEAM KILL" if res["first-team"] == res["second-team"]
+		# player. if res["first-team"] != res["second-team"]
+
 	end
 
 	def capture_suicide line

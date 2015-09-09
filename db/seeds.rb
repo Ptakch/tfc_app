@@ -12,6 +12,9 @@ Team.destroy_all
  
 t1 = Team.create :name => "[G]"
 t2 = Team.create :name => "|RoK|"
-t3 = Team.create :name => "[DHL]"
-
+t3 = Team.create :name => "[iRG]"
+t4 = Team.create :name => "4ifr>"
+t5 = Team.create :name => "[XiL]"
+t6 = Team.create :name => "kzn."
+t7 = Team.create :name => "epsylon."
 
