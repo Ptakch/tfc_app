@@ -22,6 +22,42 @@
 	<%end%>
 </table>
 
+<h3>***** DEFENCE KILLS LIST ***********************************</h3>
 <% @players_ordered.each do |player| %>
 	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
 <% end %>
+
+<h3>***** DEFENCE DEATHS LIST ***********************************</h3>
+<% @players_ordered2.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>
+<h3>***** DEFENCE TEAM KILLS LIST ***********************************</h3>
+<% @players_ordered7.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>
+
+<h3>***** BLUE KILLS LIST ***********************************</h3>
+<% @players_ordered4.each do |player| %>
+<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>
+
+<h3>***** BLUE DEATHS LIST ***********************************</h3>
+<% @players_ordered5.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+
+<% end %>
+
+<h3>***** BLUE SGS LIST MANG ***********************************</h3>
+<% @players_ordered3.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>	
+
+<h3>***** FLAG TOUCHES LIST MANG ***********************************</h3>
+<% @players_ordered6.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>	
+
+<h3>***** FLAG CAPS LIST MANG ***********************************</h3>
+<% @players_ordered8.each do |player| %>
+	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
+<% end %>	

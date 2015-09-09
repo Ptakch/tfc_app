@@ -8,11 +8,17 @@ class GamesController < ApplicationController
 
   def create
   	file = params[:file].read.to_s
+  	game_started = false
   	file.each_line do |line|
-  		break_into_pieces line
-  		find_map line
-  		find_server line
-  	end
+	    if line.match( /Match_Begins_Now/ ) && game_started == false
+	    	game_started = true
+
+	    else
+	  		break_into_pieces line
+	  		find_map line
+	  		find_server line
+	  	end
+	 end
 
 
   	redirect_to games_path
@@ -85,6 +91,14 @@ class GamesController < ApplicationController
 
 			player.save
 		end
+
+		player2 = Player.find_by :steam_id => res['second-id']
+		if player2
+			player2.red_deaths += 1 if res['second-team'] == "Red"
+			player2.blue_deaths += 1 if res['second-team'] == "Blue"
+
+			player2.save
+		end
 		# binding.pry
 		# # puts "#{res['first-id']} KILLED HIMSELF" if res["first-id"] == res["second-id"]
 		# puts "#{res['first-id']} got a TEAM KILL" if res["first-team"] == res["second-team"]
@@ -106,15 +120,21 @@ class GamesController < ApplicationController
 		res2 = line.match(
 			/.*(?<trigger-id>STEAM_\d+:\d+:\d+)><\w+>"\striggered\s"(?<trigger-action>\w+\s?\w+\s?\w+)"/
 			)
-		if res2
+		
+		player = Player.find_by :steam_id => res2['trigger-id'] if res2
+		if res2 && player
 			case res2['trigger-action']
 			when "Sentry_Destroyed"
 				puts "#{res2['trigger-id']} destroyed sentry : action #{res2['trigger-action']} "
+				player.blue_sgs += 1
 			when "Red Flag"
 				puts "#{res2['trigger-id']} touched the flag : action #{res2['trigger-action']}"
+				player.blue_touches += 1
 			when "Team 1 dropoff"
 				puts "#{res2['trigger-id']} Captured the flag : action #{res2['trigger-action']}"
-			end	
+				player.blue_caps += 1
+			end
+			player.save
 		end
 	end
 

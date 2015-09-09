@@ -9,7 +9,8 @@
 
 
 Team.destroy_all
- 
+Player.destroy_all
+
 t1 = Team.create :name => "[G]"
 t2 = Team.create :name => "|RoK|"
 t3 = Team.create :name => "[iRG]"
