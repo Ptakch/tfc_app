@@ -7,10 +7,18 @@
 <%= @team.players.pluck :name %>
 </p> -->
 
+
+
 <% @team.players.each do |player| %>
 	<p>
 		<%= link_to player.name, "/players/#{player.id}" %>
 	</p>
-	<% end %>
+<% end %>
 
-	<%= link_to "Back", teams_path %>
+<h3>Recent Games</h3>
+<% @games.each do |game| %>
+	<%= link_to game.game_title, game %>
+	
+<% end %>
+
+<%= link_to "Back", teams_path %>

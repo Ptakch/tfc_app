@@ -7,18 +7,27 @@ class GamesController < ApplicationController
   end
 
   def create
+  	
+  	 @game = Game.new
+	 @game.blue_team = params['blue_team']
+	 @game.red_team = params['red_team']
+	 @game.file_name = params['file'].original_filename
+	 @game.game_title = params['name']
+	 @game.map = @map
+	 @game.save
   	file = params[:file].read.to_s
   	game_started = false
   	file.each_line do |line|
-	    if line.match( /Match_Begins_Now/ ) && game_started == false
+	    find_map line
+	  	find_server line
+	    if line.match( /Match_Begins_Now/ )&& game_started == false
 	    	game_started = true
-
 	    else
 	  		break_into_pieces line
-	  		find_map line
-	  		find_server line
+	  		
 	  	end
 	 end
+
 
 
   	redirect_to games_path
@@ -28,6 +37,9 @@ class GamesController < ApplicationController
   end
 
   def show
+  	@game = Game.find(params[:id])
+  	@red_team = Team.find_by(name: @game.red_team)
+  	@blue_team = Team.find_by(name: @game.blue_team)
   end
 
   private
@@ -44,6 +56,8 @@ class GamesController < ApplicationController
 		results = line.match /Started map \"(?<map-name>\w+)\"/ 
 		if results && results.length != 0
 			puts "*** #{results['map-name']} ***"
+			@game.map = results['map-name']
+			@game.save
 			return results['map-name'] 
 		end
 	end
@@ -149,6 +163,12 @@ class GamesController < ApplicationController
 
 	
 end
+
+
+
+# Game.where( "red_team = :team_name OR blue_team = :team_name", { team_name: "|RoK|" } )
+
+
 
 
 # @game = Game.new

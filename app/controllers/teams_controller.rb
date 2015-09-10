@@ -6,7 +6,8 @@ end
 
 def show
 	@team = Team.find(params[:id])
-	
+	# binding.pry
+	@games = Game.where( "red_team = :team_name OR blue_team = :team_name", {team_name: @team.name} )
 end
 
 

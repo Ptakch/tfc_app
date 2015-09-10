@@ -2,14 +2,17 @@ class PlayersController < ApplicationController
 
 	def index
 		@players = Player.all
-		@players_ordered = Player.pluck( :name, :red_kills ).sort_by { |item| item[1] }.reverse
-		@players_ordered2 = Player.pluck( :name, :red_deaths ).sort_by { |item| item[1] }
-		@players_ordered3 = Player.pluck( :name, :blue_sgs ).sort_by { |item| item[1] }.reverse
-		@players_ordered4 = Player.pluck( :name, :blue_kills ).sort_by { |item| item[1] }.reverse
-		@players_ordered5 = Player.pluck( :name, :blue_deaths ).sort_by { |item| item[1] }.reverse
-		@players_ordered6 = Player.pluck( :name, :blue_touches ).sort_by { |item| item[1] }.reverse
-		@players_ordered7 = Player.pluck( :name, :red_tks ).sort_by { |item| item[1] }.reverse
-		@players_ordered8 = Player.pluck( :name, :blue_caps ).sort_by { |item| item[1] }.reverse
+		@players_ordered = Player.order( red_kills: :desc ).limit( 3 ).pluck( :name, :red_kills )
+		@players_ordered2 = Player.order( red_deaths: :desc ).limit( 3 ).pluck( :name, :red_deaths )
+
+		@players_ordered3 = Player.order( blue_sgs: :desc ).limit( 3 ).pluck( :name, :blue_sgs )
+		@players_ordered4 = Player.order( blue_kills: :desc ).limit( 3 ).pluck( :name, :blue_kills )
+
+		@players_ordered5 = Player.order( blue_deaths: :desc ).limit( 3 ).pluck( :name, :blue_deaths )
+		@players_ordered6 = Player.order( blue_touches: :desc ).limit( 3 ).pluck( :name, :blue_touches )
+
+		@players_ordered7 = Player.order( red_tks: :desc ).limit( 3 ).pluck( :name, :red_tks )
+		@players_ordered8 = Player.order( blue_caps: :desc ).limit( 3 ).pluck( :name, :blue_caps )
 	end
 
 	def show
@@ -51,6 +54,8 @@ class PlayersController < ApplicationController
 
 		redirect_to players_path
 	end
+
+
 
 
 	private

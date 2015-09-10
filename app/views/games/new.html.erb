@@ -1,4 +1,4 @@
-<h1>Games#new</h1>
+<h1>Log Upload</h1>
 <strong><p>Upload your log file</p></strong>
 
 <%= form_tag "/games", multipart: true do %>
@@ -10,12 +10,12 @@
 
 	<p>
 		<%= label_tag "Select BLUE team" %>
-    	<%= select_tag :blue_team, options_for_select(Team.all.map { |team| [ team.name, team.id ] }), :include_blank => true %>
+    	<%= select_tag :blue_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true %>
   	</p>
  	
  	<p>
 		<%= label_tag "Select RED team" %>
-    	<%= select_tag :red_team, options_for_select(Team.all.map { |team| [ team.name, team.id ] }), :include_blank => true %>
+    	<%= select_tag :red_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true %>
   	</p>
 
 	<p>
@@ -25,3 +25,5 @@
 
 	<%= submit_tag "Upload it" %>
 <% end %>
+
+<%= link_to 'Back', games_path %>

@@ -1,2 +1,6 @@
-<h1>Games#show</h1>
-<p>Find me in app/views/games/show.html.erb</p>
+<h1><%= @game.red_team %> VS <%= @game.blue_team %></h1>
+
+Game : <%= @game.game_title %><br>
+Map : <%= @game.map %><br>
+Red Team : <%= link_to @game.red_team, @red_team %><br>
+Blue Team : <%= link_to @game.blue_team, @blue_team %><br>

@@ -8,6 +8,9 @@
 #  map        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  game_title :string
+#  red_team   :string
+#  blue_team  :string
 #
 
 require 'test_helper'

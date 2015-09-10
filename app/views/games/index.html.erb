@@ -1,4 +1,18 @@
-<h1>Games#index</h1>
-<p>Find me in app/views/games/index.html.erb</p>
+<h1>Recent Games</h1>
+<%= link_to 'Teams', teams_path %>
+<%= link_to 'Player List', controller: 'players' %>
+<%= link_to 'New Player', new_player_path %>
+<%= link_to 'Games', games_path %>
+<%= link_to 'Upload Game', new_game_path %>
 
-<%= @games.all %>
+<% @games.each do |game| %>
+<p>
+	<%= game.game_title %><br>
+	<%= game.red_team %> Vs <%= game.blue_team %> - Map: <%= game.map %><br>
+	<%= game.red_team %><br>
+	<%= game.blue_team %><br>
+	
+</p>
+<% end %>
+
+<!-- Game.where( "red_team = :team_name OR blue_team = :team_name", {team_name: "|RoK|"} ) -->
