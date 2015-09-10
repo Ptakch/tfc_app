@@ -1,25 +1,66 @@
-== README
+== README ==
 
-This parses logs and ammends a database of results for seasonal statistics for the game of Team Fortress Classic.
+This parses game log files and ammends a database of results for seasonal statistics for the game of Team Fortress Classic(tfc).
+Teams can be populated via the seeds file, or assigned with the specific players EDIT function. Players can also be populated via the seeds file, although the log parser will create new players if not allready in the Database.
 
-* Ruby version
+How to Use: 
 
-* System dependencies
+==** Upload Game **==
 
-* Configuration
+This is the primary function of this application. From the relevant game server that your TFC game had been played on, download the subsequent .log file (eg. L0809074.log). Go to Games > Upload Games in the Navigation bar.
+* Name the Game:
+* Select the Blue and Red teams from the dropdown menu. Only teams that have been declared in the seeds file will be 	    available for selection. 
+* Choose your file:
+* Click the Upload Button
 
-* Database creation
+The data retrieved from the parsing of the .log file will ammend the results of the Player and Teams databases.
+This data will importantly add new players to the database if the specific Steam_ID has not been entered yet. This will account for any players who are added late to team rosters, and are not yet in the system.
+You can see the latest uploaded games in Games > View Uploaded in the Navigation Bar.
 
-* Database initialization
+==** Players **==
 
-* How to run the test suite
+Hitting the 'Players' tab in the Navigation bar will bring you to a page with 8 small tables at the top.
+These are the Top performing players in the following catagories :
+* Most Red Kills
+* Most Red Deaths
+* Most Red Team Kills
+* Most Blue Kills
+* Most Blue Deaths
+* Most Sentry Gun Kills
+* Most Flag Touches
+* Most Flag Captures
 
-* Services (job queues, cache servers, search engines, etc.)
+Below these tables is the 'Players List'. This list has all players currently stored in the database.
+Along side this is a 'Create New Player' button. This will bring you to a form to create a new player via
+* name
+* team [dropdown-menu]
+* steam_id
 
-* Deployment instructions
+All other statistic fiels are defaulted to 0.
 
-* ...
+In the Player list, we have options to Show, Edit, and Destroy players.
+
+*show*
+In addition to 'show' you can also click on the players Name in the Player List to access 'show'
+
+This is where the detailed statistics for each player is seen. Tables of the following :
+* DEFENCE TOTALS(Seasonal Stats) - Kills | Deaths | Kills to Deaths Ration (KDR) |	Team Kills (TKs) | Red Maps |
+* OFFENCE TOTALS(Seasonal Stats) - Kills | Deaths |	KDR	| TKs |	Flag Touches | Caps | Sg Kills	| Blue Maps |
+
+followed by average stats for a single 15 minute game:
+* DEFENCE Average Per Map | Kills |	Deaths | KDR | Tks |
+* OFFENCE Average Per Map | Kills |	Deaths | KDR | Tks | Flag Touches | Caps | Sentry Gun kills (SGs) |
+
+** Edit **
+Inside the Players > Show page, you can also 'Edit' a player. This will send you to the same form format seen in 'Create New Player'. This has pre filled information you can change. Most common use for edit, is to change
+the name of the player if it has been prefilled with an alias via the game log, OR to assign a team to that player.
+
+** Destroy **
+To delete a player from the database, In the Players Tab, On the players List, click 'Destroy' on the specific players link.
+
+==** Teams **==
+Inside the Teams page, You can click on an individual team and it will send you to the individual team page.
+This page will show you Who is in the team, Links to each player on the team, and the teams 'Recent Games'. A list of links to games you can click on for more information.
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+

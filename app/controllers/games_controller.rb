@@ -66,7 +66,7 @@ class GamesController < ApplicationController
   end
 
   private
-	  # ALL YOUR METHODS GO HERE!
+	  
 	def find_server line
 		results = line.match /Server\sname\sis\s\"(?<server-name>[^"]+)/
 		if results && results.length !=0
@@ -75,7 +75,7 @@ class GamesController < ApplicationController
 		end
 	end  
 
-	def find_map line # finds the map.
+	def find_map line 
 		results = line.match /Started map \"(?<map-name>\w+)\"/ 
 		if results && results.length != 0
 			puts "*** #{results['map-name']} ***"
@@ -98,7 +98,6 @@ class GamesController < ApplicationController
 	end
 
 	def capture_kill line
-		# puts "Captured Kill called"
 		res = line.match( 
 			/.*\"(?<username>.*)<\d+
 			 .*(?<first-id>STEAM_\d+:\d+:\d+)
@@ -152,24 +151,18 @@ class GamesController < ApplicationController
 
 			player2.save
 		end
-		# binding.pry
-		# # puts "#{res['first-id']} KILLED HIMSELF" if res["first-id"] == res["second-id"]
-		# puts "#{res['first-id']} got a TEAM KILL" if res["first-team"] == res["second-team"]
-		# player. if res["first-team"] != res["second-team"]
+	
 
 	end
 
-	def capture_suicide line
-		# puts "Capture Suicide called"
+	def capture_suicide line		
 		res = line.match(
 			/.*(?<suicide-id>STEAM_\d+:\d+:\d+)/
 			)
 		puts "#{res['suicide-id']} committed SUICIDE"
 	end
 
-	def capture_trigger line
-		# puts "Capture trigger called"
-
+	def capture_trigger line		
 		res2 = line.match(
 			/.*(?<trigger-id>STEAM_\d+:\d+:\d+)><\w+>"\striggered\s"(?<trigger-action>\w+\s?\w+\s?\w+)"/
 			)
@@ -202,5 +195,5 @@ class GamesController < ApplicationController
 end
 
 
-# Game.where( "red_team = :team_name OR blue_team = :team_name", { team_name: "|RoK|" } )
+
 
