@@ -20,3 +20,20 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body .table {
+	width: auto;
+}
+
+.clear {
+	clear: both;
+}
+
+.team {
+	text-align: center;
+	height: 100px;
+	line-height: 100px;
+	background: gainsboro;
+	border-radius: 10px;
+	margin: 10px;
+}

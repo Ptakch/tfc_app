@@ -8,15 +8,18 @@ class GamesController < ApplicationController
 
   def create
   	
-  	 @game = Game.new
-	 @game.blue_team = params['blue_team']
-	 @game.red_team = params['red_team']
-	 @game.file_name = params['file'].original_filename
-	 @game.game_title = params['name']
-	 @game.map = @map
-	 @game.save
+  	@game = Game.new
+	@game.blue_team = params['blue_team']
+	@game.red_team = params['red_team']
+	@game.file_name = params['file'].original_filename
+	@game.game_title = params['name']
+	@game.map = @map
+	@game.save
   	file = params[:file].read.to_s
   	game_started = false
+
+  	@players_involved = { :red => [], :blue => [] }
+
   	file.each_line do |line|
 	    find_map line
 	  	find_server line
@@ -26,10 +29,23 @@ class GamesController < ApplicationController
 	  		break_into_pieces line
 	  		
 	  	end
-	 end
+	end
 
+	@players_involved[:red].each do |player|
+		current_player = Player.find_by :steam_id => player
+		if current_player
+			current_player.red_maps += 1
+			current_player.save
+		end
+	end
 
-
+	@players_involved[:blue].each do |player|
+		current_player = Player.find_by :steam_id => player
+		if current_player
+			current_player.blue_maps += 1
+			current_player.save
+		end
+	end
   	redirect_to games_path
   end
 
@@ -91,6 +107,22 @@ class GamesController < ApplicationController
 			 .*(?<second-id>STEAM_\d+:\d+:\d+)
 			 .*(?<second-team>(Red|Blue))
 			/x )
+
+		unless @players_involved[:red].index( res["first-id"] ) || @players_involved[:blue].index( res["first-id"] )
+			if res["first-team"] == "Red"
+				@players_involved[:red] << res["first-id"]
+			else 
+				@players_involved[:blue] << res["first-id"]
+			end
+		end		
+
+		unless @players_involved[:red].index( res["second-id"] ) || @players_involved[:blue].index( res["second-id"] )
+			if res["second-team"] == "Red"
+				@players_involved[:red] << res["second-id"]
+			else 
+				@players_involved[:blue] << res["second-id"]
+			end
+		end
 
 		player = Player.find_by :steam_id => res['first-id']
 		if player

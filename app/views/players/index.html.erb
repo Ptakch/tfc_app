@@ -1,3 +1,62 @@
+<table class="table table-striped">
+	<tr><th class="info">Most Red Kills</th></tr>
+	<% @players_ordered.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most Red Deaths</th></tr>
+	<% @players_ordered2.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most TK's</th></tr>
+	<% @players_ordered7.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most Blue Kills</th></tr>
+	<% @players_ordered4.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most Blue Deaths</th></tr>
+	<% @players_ordered5.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most SG kills</th></tr>
+	<% @players_ordered3.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most Flag Touches</th></tr>
+	<% @players_ordered6.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+<table class="table table-striped">
+	<tr><th class="info">Most Flag Captures</th></tr>
+	<% @players_ordered8.each do |player| %>
+		<tr><td><%= player[0] %>: <%= player[1] %></td></tr>
+	<% end %>
+</table>
+
+
+
+
 <h1>Player List</h1>
 <a href="players/new" class="btn btn-success">CREATE NEW PLAYER</a>
 
@@ -5,9 +64,9 @@
 
 <table class="table table-striped">
 	<tr>
-		<th>Name</th>
-		<th>Team</th>
-		<th>Steam Id</th>
+		<th class="info">Name</th>
+		<th class="info">Team</th>
+		<th class="info">Steam Id</th>
 	</tr>
 	<% @players.each do |player| %>
 	<tr>
@@ -21,58 +80,6 @@
 	<%end%>
 </table>
 
-<h3>***** DEFENCE KILLS LIST *************************************</h3>
-<% @players_ordered.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>
-<h3>______________________________________________________________</h3>
-<br />
 
-<h3>***** DEFENCE DEATHS LIST ************************************</h3>
-<% @players_ordered2.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>
-<h3>______________________________________________________________</h3>
-<br />
 
-<h3>***** DEFENCE TEAM KILLS LIST ********************************</h3>
-<% @players_ordered7.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>
-<h3>______________________________________________________________</h3>
-<br />
 
-<h3>***** BLUE KILLS LIST ****************************************</h3>
-	<% @players_ordered4.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>
-<h3>______________________________________________________________</h3>
-<br />
-
-<h3>***** BLUE DEATHS LIST ***************************************</h3>
-<% @players_ordered5.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>
-<h3>______________________________________________________________</h3>
-<br />
-
-<h3>***** BLUE SGS LIST MANG *************************************</h3>
-<% @players_ordered3.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>	
-<h3>______________________________________________________________</h3>
-<br />
-
-<h3>***** FLAG TOUCHES LIST MANG *********************************</h3>
-<% @players_ordered6.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>	
-<h3>______________________________________________________________</h3>
-<br />
-
-<h3>***** FLAG CAPS LIST MANG ************************************</h3>
-<% @players_ordered8.each do |player| %>
-	<p><strong><%= player[0] %>: </strong><%= player[1] %></p>
-<% end %>	
-<h3>______________________________________________________________</h3>
-<br />

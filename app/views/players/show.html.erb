@@ -34,13 +34,14 @@
 </p> -->
 
 
-<h3> DEFENCE </h3>
+<h3> DEFENCE Totals </h3>
 <table class="table table-striped">
 	<tr>
 		<th>Kills</th>
 		<th>Deaths</th>
 		<th>KDR</th>
 		<th>TKs</th>
+		<th>Red Maps</th>
 	</tr>
 
 	<tr>
@@ -49,10 +50,11 @@
 		<td><%= @player.red_deaths %></td>
 		<td><%= ((@player.red_kills).to_f / (@player.red_deaths).to_f).round(2) %></td>
 		<td><%= @player.red_tks %></td>
+		<td><%= @player.red_maps %></td>
 	</tr>
 </table>
 
-<h3> OFFENCE </h3>
+<h3> OFFENCE Totals </h3>
 <table class="table table-striped">
 	<tr>
 		<th>Kills</th>
@@ -61,7 +63,8 @@
 		<th>TKs</th>
 		<th>Flag Touches</th>
 		<th>Caps</th>
-		<th>Sg Kills</th>	
+		<th>Sg Kills</th>
+		<th>Blue Maps</th>	
 	</tr>
 
 	<tr>
@@ -73,8 +76,56 @@
 		<td><%= @player.blue_touches %></td>
 		<td><%= @player.blue_caps %></td>
 		<td><%= @player.blue_sgs %></td>
+		<td><%= @player.blue_maps %></td>
 	</tr>
 </table>
+
+<h3> DEFENCE Average Per Map </h3>
+<table class="table table-striped">
+	<tr>
+		<th>Kills</th>
+		<th>Deaths</th>
+		<th>KDR</th>
+		<th>TKs</th>
+		
+	</tr>
+
+	<tr>
+		<td><%= (@player.red_kills.to_f/@player.red_maps )%></td>
+		
+		<td><%= (@player.red_deaths.to_f/@player.red_maps) %></td>
+		<td><%= ((@player.red_kills).to_f / (@player.red_deaths).to_f).round(2) %></td>
+		<td><%= (@player.red_tks.to_f/ @player.red_maps) %></td>
+		
+	</tr>
+</table>
+
+<h3> OFFENCE Average Per Map</h3>
+<table class="table table-striped">
+	<tr>
+		<th>Kills</th>
+		<th>Deaths</th>
+		<th>KDR</th>
+		<th>TKs</th>
+		<th>Flag Touches</th>
+		<th>Caps</th>
+		<th>Sg Kills</th>
+		
+	</tr>
+
+	<tr>
+		<td><%= (@player.blue_kills.to_f/ @player.blue_maps) %></td>
+		
+		<td><%= (@player.blue_deaths.to_f/ @player.blue_maps) %></td>
+		<td><%= ((@player.blue_kills).to_f / (@player.blue_deaths).to_f).round(2) %></td>
+		<td><%= (@player.blue_tks.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_touches.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_caps.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_sgs.to_f/ @player.blue_maps) %></td>
+	
+	</tr>
+</table>
+
 <br>
 <%= link_to 'Back', players_path %>
 <%= link_to 'Edit', edit_player_path %>
