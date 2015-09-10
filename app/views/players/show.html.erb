@@ -31,10 +31,10 @@
 	<tr>
 		<td><%= @player.red_kills %></td>
 		
-		<td><%= @player.red_deaths %></td>
+		<td><%= (@player.red_deaths).round(2) %></td>
 		<td><%= ((@player.red_kills).to_f / (@player.red_deaths).to_f).round(2) %></td>
-		<td><%= @player.red_tks %></td>
-		<td><%= @player.red_maps %></td>
+		<td><%= (@player.red_tks).round(2) %></td>
+		<td><%= (@player.red_maps).round(2) %></td>
 	</tr>
 </table>
 
@@ -52,15 +52,15 @@
 	</tr>
 
 	<tr>
-		<td><%= @player.blue_kills %></td>
+		<td><%= (@player.blue_kills).round(2) %></td>
 		
-		<td><%= @player.blue_deaths %></td>
+		<td><%= (@player.blue_deaths).round(2) %></td>
 		<td><%= ((@player.blue_kills).to_f / (@player.blue_deaths).to_f).round(2) %></td>
-		<td><%= @player.blue_tks %></td>
-		<td><%= @player.blue_touches %></td>
-		<td><%= @player.blue_caps %></td>
-		<td><%= @player.blue_sgs %></td>
-		<td><%= @player.blue_maps %></td>
+		<td><%= (@player.blue_tks).round(2) %></td>
+		<td><%= (@player.blue_touches).round(2) %></td>
+		<td><%= (@player.blue_caps).round(2) %></td>
+		<td><%= (@player.blue_sgs).round(2) %></td>
+		<td><%= (@player.blue_maps).round(2) %></td>
 	</tr>
 </table>
 
@@ -75,11 +75,11 @@
 	</tr>
 
 	<tr>
-		<td><%= (@player.red_kills.to_f/@player.red_maps )%></td>
+		<td><%= (@player.red_kills.to_f/@player.red_maps ).round(2)%></td>
 		
-		<td><%= (@player.red_deaths.to_f/@player.red_maps) %></td>
+		<td><%= (@player.red_deaths.to_f/@player.red_maps).round(2) %></td>
 		<td><%= ((@player.red_kills).to_f / (@player.red_deaths).to_f).round(2) %></td>
-		<td><%= (@player.red_tks.to_f/ @player.red_maps) %></td>
+		<td><%= (@player.red_tks.to_f/ @player.red_maps).round(2) %></td>
 		
 	</tr>
 </table>
@@ -98,14 +98,14 @@
 	</tr>
 
 	<tr>
-		<td><%= (@player.blue_kills.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_kills.to_f/ @player.blue_maps).round(2) %></td>
 		
-		<td><%= (@player.blue_deaths.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_deaths.to_f/ @player.blue_maps).round(2) %></td>
 		<td><%= ((@player.blue_kills).to_f / (@player.blue_deaths).to_f).round(2) %></td>
-		<td><%= (@player.blue_tks.to_f/ @player.blue_maps) %></td>
-		<td><%= (@player.blue_touches.to_f/ @player.blue_maps) %></td>
-		<td><%= (@player.blue_caps.to_f/ @player.blue_maps) %></td>
-		<td><%= (@player.blue_sgs.to_f/ @player.blue_maps) %></td>
+		<td><%= (@player.blue_tks.to_f/ @player.blue_maps).round(2) %></td>
+		<td><%= (@player.blue_touches.to_f/ @player.blue_maps).round(2) %></td>
+		<td><%= (@player.blue_caps.to_f/ @player.blue_maps).round(2) %></td>
+		<td><%= (@player.blue_sgs.to_f/ @player.blue_maps).round(2) %></td>
 	
 	</tr>
 </table>
