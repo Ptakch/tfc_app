@@ -195,23 +195,12 @@ class GamesController < ApplicationController
 		case find_action( line )
 		when "kill" then capture_kill(line)
 		when "suicide" then capture_suicide(line)
-		when "trigger" then capture_trigger(line)
-		
+		when "trigger" then capture_trigger(line)		
 		end
 	end
-
 	
 end
 
 
-
 # Game.where( "red_team = :team_name OR blue_team = :team_name", { team_name: "|RoK|" } )
 
-
-
-
-# @game = Game.new
-# @game.file_name = ......
-# @game.game_date = ......
-# @game.map = ......
-# @game.save

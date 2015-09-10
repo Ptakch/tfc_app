@@ -1,6 +1,6 @@
 == README
 
-This parses logs and ammends a database of results for seasonal statistics for the game of TFC.
+This parses logs and ammends a database of results for seasonal statistics for the game of Team Fortress Classic.
 
 * Ruby version
 
