@@ -1,40 +1,47 @@
 <h1>Log Upload</h1>
 <strong><p>Upload your log file</p></strong>
 
-<%= form_tag "/games", multipart: true do %>
+<%= form_tag "/games", multipart: true, class: "navbar-form" do %>
+	<div class="form-group">
 	<p>
 		<%= label_tag "Name dat file" %>
 		<%= text_field_tag :name %>
-
 	</p>
+
 
 	<p>
 		<%= label_tag "Select BLUE team" %>
-    	<%= select_tag :blue_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true %>
+    	<%= select_tag :blue_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true, class: "form-control" %>
   	</p>
+ 	
  	
  	<p>
 		<%= label_tag "Select RED team" %>
-    	<%= select_tag :red_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true %>
+    	<%= select_tag :red_team, options_for_select(Team.all.map { |team| [ team.name, team.name ] }), :include_blank => true, class: "form-control" %>
   	</p>
+
 
 	<p>
 		<%= label_tag :file, "Upload Dat File" %>
 		<%= file_field_tag :file %>
 	</p>
 
-	<%= submit_tag "Upload it" %>
+	<%= submit_tag "Upload it", class: "btn btn-default" %>
+	</div>
 <% end %>
 
-<%= link_to 'Back', games_path %>
-
-
+<br>
 <h3> Delete a game </h3>
-<%= form_tag "/games/delete", method: :delete do %>
+<%= form_tag "/games/delete", method: :delete, class: "navbar-form" do %>
+	<div class="form-group">
 	<p>
 		<%= label_tag "Delete Selected Game" %>
-    	<%= select_tag :game, options_for_select(Game.all.map { |game| [ game.game_title, game.game_title ] }), :include_blank => true %>
+    	<%= select_tag :game, options_for_select(Game.all.map { |game| [ game.game_title, game.game_title ] }), :include_blank => true, class: "form-control" %>
   	</p>
-
-  	<%= submit_tag "Delete Game" %>
+	
+  	<%= submit_tag "Delete Game", class: "btn btn-default" %>
+	</div>
 <% end %>
+
+
+<%= link_to 'Back', games_path %>

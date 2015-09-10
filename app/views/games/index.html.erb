@@ -1,17 +1,26 @@
 <h1>Recent Games Uploaded</h1>
-<%= link_to 'Teams', teams_path %>
-<%= link_to 'Player List', controller: 'players' %>
-<%= link_to 'New Player', new_player_path %>
-<%= link_to 'Games', games_path %>
-<%= link_to 'Upload Game', new_game_path %>
 
-<% @games.each do |game| %>
-<p>
-	<%= game.game_title %><br>
-	<%= game.red_team %> Vs <%= game.blue_team %> - Map: <%= game.map %><br>
+<table class="table table-striped">
+	<tr>
+	<th>GAME</th>
+	<th>MAP</th>
+	</tr>
+	<tr>
+<% @games.each do |game| %>		
+	<td><%= game.game_title %><br>
+	<%= game.red_team %> Vs <%= game.blue_team %></td>
+	<td><%= game.map %></td>
+	</tr>
+<%end%>
+</table>
+
+# <% @games.each do |game| %>
+<!-- <p> -->
+	# <%= game.game_title %><br>
+	# <%= game.red_team %> Vs <%= game.blue_team %> - Map: <%= game.map %><br>
 	
 	
-</p>
-<% end %>
+<!-- </p> -->
+# <% end %>
 
 <!-- Game.where( "red_team = :team_name OR blue_team = :team_name", {team_name: "|RoK|"} ) -->

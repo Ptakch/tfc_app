@@ -1,10 +1,9 @@
-<h1>All players</h1>
-<%= link_to 'Teams', teams_path %>
-<%= link_to 'Player List', controller: 'players' %>
-<%= link_to 'New Player', new_player_path %>
-<%= link_to 'Games', games_path %>
+<h1>Player List</h1>
+<a href="players/new" class="btn btn-success">CREATE NEW PLAYER</a>
 
-<table>
+
+
+<table class="table table-striped">
 	<tr>
 		<th>Name</th>
 		<th>Team</th>

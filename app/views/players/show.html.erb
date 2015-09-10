@@ -1,26 +1,21 @@
-<h1>Player (Show)</h1>
-<%= link_to 'Teams', teams_path %>
-<%= link_to 'Player List', controller: 'players' %>
-<%= link_to 'New Player', new_player_path %>
-<%= link_to 'Games', games_path %>
 
-<p>
+<h1>
 	<strong>Name:</strong>
 	<%= @player.name %>
-</p>
+</h1>
 
 <% if @player.team %>
-	<p>
+	<h4>
 		<strong>Team:</strong>
 		<%= link_to @player.team.name, "/teams/#{@player.team.id}" %>
-	</p>
+	</h4>
 <% end %>
 
-<p>
+<h4>
 	<strong>Steam Id:</strong>
 	<%= @player.steam_id %>
-</p>
-<h3>Defence</h3>
+</h4>
+<!-- <h3>Defence</h3>
 <p> 
 	<%= @player.red_kills %> : Kills<br>
 	<%= @player.red_deaths %> : Deaths<br>
@@ -36,6 +31,50 @@
 	<%= @player.blue_touches %> : Flag Touches<br>
 	<%= @player.blue_caps %> : Flag Captures<br>
 	<%= @player.blue_sgs %> : Sg Kills<br>
-</p>
+</p> -->
+
+
+<h3> DEFENCE </h3>
+<table class="table table-striped">
+	<tr>
+		<th>Kills</th>
+		<th>Deaths</th>
+		<th>KDR</th>
+		<th>TKs</th>
+	</tr>
+
+	<tr>
+		<td><%= @player.red_kills %></td>
+		
+		<td><%= @player.red_deaths %></td>
+		<td><%= ((@player.red_kills).to_f / (@player.red_deaths).to_f).round(2) %></td>
+		<td><%= @player.red_tks %></td>
+	</tr>
+</table>
+
+<h3> OFFENCE </h3>
+<table class="table table-striped">
+	<tr>
+		<th>Kills</th>
+		<th>Deaths</th>
+		<th>KDR</th>
+		<th>TKs</th>
+		<th>Flag Touches</th>
+		<th>Caps</th>
+		<th>Sg Kills</th>	
+	</tr>
+
+	<tr>
+		<td><%= @player.blue_kills %></td>
+		
+		<td><%= @player.blue_deaths %></td>
+		<td><%= ((@player.blue_kills).to_f / (@player.blue_deaths).to_f).round(2) %></td>
+		<td><%= @player.blue_tks %></td>
+		<td><%= @player.blue_touches %></td>
+		<td><%= @player.blue_caps %></td>
+		<td><%= @player.blue_sgs %></td>
+	</tr>
+</table>
+<br>
 <%= link_to 'Back', players_path %>
 <%= link_to 'Edit', edit_player_path %>
