@@ -27,3 +27,14 @@
 <% end %>
 
 <%= link_to 'Back', games_path %>
+
+
+<h3> Delete a game </h3>
+<%= form_tag "/games/delete", method: :delete do %>
+	<p>
+		<%= label_tag "Delete Selected Game" %>
+    	<%= select_tag :game, options_for_select(Game.all.map { |game| [ game.game_title, game.game_title ] }), :include_blank => true %>
+  	</p>
+
+  	<%= submit_tag "Delete Game" %>
+<% end %>

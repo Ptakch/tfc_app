@@ -1,4 +1,4 @@
-<h1>Recent Games</h1>
+<h1>Recent Games Uploaded</h1>
 <%= link_to 'Teams', teams_path %>
 <%= link_to 'Player List', controller: 'players' %>
 <%= link_to 'New Player', new_player_path %>
@@ -9,8 +9,7 @@
 <p>
 	<%= game.game_title %><br>
 	<%= game.red_team %> Vs <%= game.blue_team %> - Map: <%= game.map %><br>
-	<%= game.red_team %><br>
-	<%= game.blue_team %><br>
+	
 	
 </p>
 <% end %>

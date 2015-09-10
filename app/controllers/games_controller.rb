@@ -36,6 +36,13 @@ class GamesController < ApplicationController
   def edit
   end
 
+  def destroy
+  	@game = Game.find_by( game_title: params[:game] )
+  	@game.destroy
+
+  	redirect_to games_path
+  end
+
   def show
   	@game = Game.find(params[:id])
   	@red_team = Team.find_by(name: @game.red_team)

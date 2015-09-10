@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
-	root 'players#index'
+	root 'teams#index'
 	resources :players, :teams, :games
+	delete 'games/delete' => 'games#destroy'
 end
